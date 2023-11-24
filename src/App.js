@@ -22,7 +22,7 @@ const App = () => {
       setUsers(response.data);
       // console.log(response.data)
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error data:', error);
     }
   };
 
@@ -32,7 +32,7 @@ const App = () => {
       setUsers(response.data);
       // console.log(response.data[0])
     } catch (error) {
-      console.error('Error searching users:', error);
+      console.error('Error users:', error);
     }
   };
   
