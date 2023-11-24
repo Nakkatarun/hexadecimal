@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+// importing the useState and useEffect from react
 
 import "./App.css"
 
@@ -10,7 +10,7 @@ const App = () => {
 
 
   console.log(users)
-
+  // using useEffect for fetching the data
   useEffect(() => {
     // Fetch initial data
     fetchData();
