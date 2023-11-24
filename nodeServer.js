@@ -9,14 +9,14 @@ app.listen(3004, () => {
     console.log(`Server is running on http://localhost:3004`);
   });
   
-// Endpoint to fetch user and post data
+// get the data using /v1/users  
 app.get('/v1/users', async (req, res) => {
   try {
-    // Fetch user data
+    // getting user data
     const usersResponse = await axios.get('https://jsonplaceholder.typicode.com/users');
     const users = usersResponse.data;
 
-    // Fetch post data
+    // getting post data
     const postsResponse = await axios.get('https://jsonplaceholder.typicode.com/posts');
     const posts = postsResponse.data;
 
@@ -29,11 +29,11 @@ app.get('/v1/users', async (req, res) => {
     res.json(combinedData);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Server Error' });
   }
 });
 
-// Endpoint to support user search functionality
+// get the data using /v1/users/search applying query parameters
 app.get('/v1/users/search', async (req, res) => {
   const searchText = req.query.searchText;
   
@@ -42,19 +42,15 @@ app.get('/v1/users/search', async (req, res) => {
   }
 
   try {
-    /* // Fetch user data
-    const usersResponse = await axios.get('https://jsonplaceholder.typicode.com/users');
-    const users = usersResponse.data;
-   */ 
 
     const usersResponse = await axios.get('https://jsonplaceholder.typicode.com/users');
     const users = usersResponse.data;
 
-    // Fetch post data
+    // getting post data
     const postsResponse = await axios.get('https://jsonplaceholder.typicode.com/posts');
     const posts = postsResponse.data;
 
-    // Combine post data with user data based on userId
+    // Combining the response data
     const combinedData = users.map(user => {
       const userPosts = posts.filter(post => post.userId === user.id);
       return { ...user, posts: userPosts };
@@ -67,6 +63,6 @@ app.get('/v1/users/search', async (req, res) => {
     res.json(matchingUsers);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: ' Server Error' });
   }
 });
